@@ -2,6 +2,7 @@ import { Transferencia } from './../models/transferencia.model';
 import { TransferenciaService } from './../services/transferencia.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Output ,EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class NovaTransferenciaComponent {
   destino:number;
   id:number;
 
-  constructor(private service:TransferenciaService){
+  constructor(private service:TransferenciaService,private router:Router){
 
   }
 
@@ -28,6 +29,7 @@ export class NovaTransferenciaComponent {
     this.service.adicionar(transferir).subscribe(resultado =>{
       console.log(resultado);
       this.limparCampos();
+      this.router.navigateByUrl('extrato');
     } ,error =>console.error(error)
 
 
